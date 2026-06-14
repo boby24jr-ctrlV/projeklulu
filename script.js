@@ -145,3 +145,72 @@ const letterObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 msgAnims.forEach(el => letterObserver.observe(el));
+
+// ===== Gallery lightbox =====
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+galleryItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const img = item.querySelector('img');
+    const caption = item.getAttribute('data-caption') || '';
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightboxCaption.textContent = caption;
+    lightbox.classList.add('active');
+  });
+});
+
+lightbox.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+});
+
+// ===== Closing section: confetti hearts on scroll into view =====
+const closingSection = document.querySelector('.closing');
+
+function spawnClosingBurst() {
+  const burstEmojis2 = ['💗', '💕', '🌸', '✨', '💖'];
+  for (let i = 0; i < 24; i++) {
+    const el = document.createElement('span');
+    el.textContent = burstEmojis2[Math.floor(Math.random() * burstEmojis2.length)];
+    el.style.position = 'absolute';
+    el.style.left = '50%';
+    el.style.top = '40%';
+    el.style.fontSize = (1 + Math.random() * 1.2) + 'rem';
+    el.style.pointerEvents = 'none';
+    el.style.zIndex = '50';
+
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 80 + Math.random() * 220;
+    const tx = Math.cos(angle) * distance;
+    const ty = Math.sin(angle) * distance;
+
+    el.style.transition = 'transform 1.8s ease-out, opacity 1.8s ease-out';
+    el.style.opacity = '1';
+    el.style.transform = 'translate(-50%, -50%) scale(0.5)';
+
+    closingSection.appendChild(el);
+
+    requestAnimationFrame(() => {
+      el.style.transform = `translate(${tx - 50}%, ${ty - 50}%) scale(1.2) rotate(${Math.random() * 360}deg)`;
+      el.style.opacity = '0';
+    });
+
+    setTimeout(() => el.remove(), 2000);
+  }
+}
+
+const closingObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      spawnClosingBurst();
+      closingObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.4 });
+
+if (closingSection) {
+  closingObserver.observe(closingSection);
+}
