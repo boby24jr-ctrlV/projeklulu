@@ -1,6 +1,7 @@
 // ===== Intro gift box logic =====
 const introScreen = document.getElementById('introScreen');
 const giftBox = document.getElementById('giftBox');
+const giftGlowRing = document.querySelector('.gift-glow-ring');
 const introSparkles = document.getElementById('introSparkles');
 const petalBurst = document.getElementById('petalBurst');
 const curtainLeft = document.getElementById('curtainLeft');
@@ -48,32 +49,44 @@ function createPetalBurst() {
   }
 }
 
+let introClicked = false;
+
 introScreen.addEventListener('click', () => {
-  giftBox.classList.add('opening');
+  if (introClicked) return;
+  introClicked = true;
 
-  // Step 1: gift box opening animation finishes (~600ms), then hide intro
+  // Step 0: shake with anticipation first
+  giftBox.classList.add('shaking');
+
   setTimeout(() => {
-    introScreen.classList.add('hide');
+    giftBox.classList.remove('shaking');
+    giftBox.classList.add('opening');
+    giftGlowRing.classList.add('opening');
 
-    // Step 2: trigger flower burst across the screen
-    createPetalBurst();
-
-    // Step 3: after burst plays a bit, open the curtains + reveal hero text
+    // Step 1: gift box opening animation finishes (~700ms), then hide intro
     setTimeout(() => {
-      curtainLeft.classList.add('open');
-      curtainRight.classList.add('open');
-      document.body.style.overflow = 'auto';
+      introScreen.classList.add('hide');
 
-      // Trigger hero text reveal animation
-      document.querySelector('.hero').classList.add('reveal-active');
+      // Step 2: trigger flower burst across the screen
+      createPetalBurst();
+
+      // Step 3: after burst plays a bit, open the curtains + reveal hero text
+      setTimeout(() => {
+        curtainLeft.classList.add('open');
+        curtainRight.classList.add('open');
+        document.body.style.overflow = 'auto';
+
+        // Trigger hero text reveal animation
+        document.querySelector('.hero').classList.add('reveal-active');
+      }, 700);
+
+      // Step 4: clean up burst petals after animation ends
+      setTimeout(() => {
+        petalBurst.innerHTML = '';
+      }, 2200);
+
     }, 700);
-
-    // Step 4: clean up burst petals after animation ends
-    setTimeout(() => {
-      petalBurst.innerHTML = '';
-    }, 2200);
-
-  }, 600);
+  }, 500);
 });
 
 // ===== Generate glow orbs =====
