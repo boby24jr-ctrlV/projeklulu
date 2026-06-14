@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Congratulations</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== INTRO / GIFT BOX SCREEN ===== -->
+  <div class="intro-screen" id="introScreen">
+    <div class="intro-sparkles" id="introSparkles"></div>
+    <div class="gift-box" id="giftBox">🎁</div>
+    <p class="intro-text">Klik dimanapun Untuk Membuka ya maniss</p>
+  </div>
+
+  <!-- ===== PETAL BURST OVERLAY ===== -->
+  <div class="petal-burst" id="petalBurst"></div>
+
+  <!-- ===== CURTAIN REVEAL ===== -->
+  <div class="curtain curtain-left" id="curtainLeft"></div>
+  <div class="curtain curtain-right" id="curtainRight"></div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="main-content" id="mainContent">
+
+    <!-- Floating glow orbs -->
+    <div class="orbs" id="orbs"></div>
+
+    <!-- Floating background petals -->
+    <div class="petals" id="petals"></div>
+
+    <!-- ===== SECTION 1: HERO ===== -->
+    <section class="section hero">
+      <div class="emoji-row reveal-text" style="--delay: 0.1s">🌸🌹🌷🌺🌿</div>
+      <p class="tagline reveal-text" style="--delay: 0.3s">always &amp; forever</p>
+      <h1 class="title reveal-text" style="--delay: 0.5s">
+        For You,<br />
+        <span class="highlight">My everything</span>
+      </h1>
+      <p class="message reveal-text" style="--delay: 0.8s">
+        Your dreams are just beginning, and I'll be here for every one
+      </p>
+
+      <!-- ===== ANIMATED ROSE (replaces 💗) ===== -->
+      <div class="rose-wrapper reveal-text" style="--delay: 1.1s">
+        <svg class="animated-rose" viewBox="0 0 340 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <style>
+              .r-stem { stroke: #4a9e5c; stroke-width: 4.5; fill: none; stroke-linecap: round; }
+              .r-stem-draw { stroke-dasharray: 220; stroke-dashoffset: 220; animation: rDrawStem 1.2s ease-out 0.2s forwards; }
+
+              .r-leaf-l { opacity: 0; transform-origin: 158px 300px; animation: rLeafPop 0.6s ease-out 0.9s forwards; }
+              .r-leaf-r { opacity: 0; transform-origin: 182px 278px; animation: rLeafPop 0.6s ease-out 1.15s forwards; }
+
+              .r-petal-outer { transform-origin: 170px 180px; opacity: 0; animation: rBloomOuter 1.8s ease-out 0.4s forwards; }
+              .r-petal-mid   { transform-origin: 170px 180px; opacity: 0; animation: rBloomMid   1.8s ease-out 0.9s forwards; }
+              .r-petal-inner { transform-origin: 170px 180px; opacity: 0; animation: rBloomInner 1.8s ease-out 1.35s forwards; }
+              .r-petal-core  { transform-origin: 170px 180px; opacity: 0; animation: rBloomCore  1.4s ease-out 1.8s forwards; }
+              .r-center      { transform-origin: 170px 180px; opacity: 0; animation: rBloomCore  1.4s ease-out 2s forwards; }
+
+              .r-sparkle { opacity: 0; }
+              .r-s1 { animation: rSparkle 0.9s ease-in-out 2.3s forwards; transform-origin: 120px 138px; }
+              .r-s2 { animation: rSparkle 0.9s ease-in-out 2.6s forwards; transform-origin: 222px 125px; }
+              .r-s3 { animation: rSparkle 0.9s ease-in-out 2.9s forwards; transform-origin: 140px 100px; }
+              .r-s4 { animation: rSparkle 0.9s ease-in-out 3.1s forwards; transform-origin: 205px 158px; }
+
+              .r-rose-group { transform-origin: 170px 360px; animation: rSway 4.5s ease-in-out 3.2s infinite; }
+
+              @keyframes rDrawStem {
+                to { stroke-dashoffset: 0; }
+              }
+              @keyframes rLeafPop {
+                0%   { opacity: 0; transform: scale(0); }
+                65%  { opacity: 1; transform: scale(1.15); }
+                100% { opacity: 1; transform: scale(1); }
+              }
+              @keyframes rBloomOuter {
+                0%   { opacity: 0; transform: scale(0.05); }
+                60%  { opacity: 1; transform: scale(1.07); }
+                100% { opacity: 1; transform: scale(1); }
+              }
+              @keyframes rBloomMid {
+                0%   { opacity: 0; transform: scale(0.05); }
+                60%  { opacity: 1; transform: scale(1.05); }
+                100% { opacity: 1; transform: scale(1); }
+              }
+              @keyframes rBloomInner {
+                0%   { opacity: 0; transform: scale(0.05); }
+                60%  { opacity: 1; transform: scale(1.04); }
+                100% { opacity: 1; transform: scale(1); }
+              }
+              @keyframes rBloomCore {
+                0%   { opacity: 0; transform: scale(0); }
+                70%  { opacity: 1; transform: scale(1.06); }
+                100% { opacity: 1; transform: scale(1); }
+              }
+              @keyframes rSparkle {
+                0%   { opacity: 0; transform: scale(0) rotate(0deg); }
+                50%  { opacity: 1; transform: scale(1.3) rotate(20deg); }
+                100% { opacity: 0; transform: scale(0) rotate(45deg); }
+              }
+              @keyframes rSway {
+                0%   { transform: rotate(0deg); }
+                25%  { transform: rotate(2.5deg); }
+                75%  { transform: rotate(-2.5deg); }
+                100% { transform: rotate(0deg); }
+              }
+            </style>
+          </defs>
+
+          <g class="r-rose-group">
+            <!-- Stem -->
+            <path class="r-stem r-stem-draw" d="M170 360 Q152 310 160 265 Q165 230 170 180"/>
+
+            <!-- Left leaf -->
+            <g class="r-leaf-l">
+              <ellipse cx="138" cy="298" rx="28" ry="12" fill="#4a9e5c" transform="rotate(-38 138 298)"/>
+              <line x1="160" y1="300" x2="127" y2="288" stroke="#3a7a48" stroke-width="1.5"/>
+            </g>
+
+            <!-- Right leaf -->
+            <g class="r-leaf-r">
+              <ellipse cx="196" cy="275" rx="28" ry="12" fill="#4a9e5c" transform="rotate(28 196 275)"/>
+              <line x1="172" y1="278" x2="192" y2="268" stroke="#3a7a48" stroke-width="1.5"/>
+            </g>
+
+            <!-- Outer petals -->
+            <g class="r-petal-outer">
+              <ellipse cx="170" cy="138" rx="22" ry="46" fill="#a93226" transform="rotate(0 170 180)"/>
+              <ellipse cx="170" cy="138" rx="22" ry="46" fill="#a93226" transform="rotate(45 170 180)"/>
+              <ellipse cx="170" cy="138" rx="22" ry="46" fill="#a93226" transform="rotate(90 170 180)"/>
+              <ellipse cx="170" cy="138" rx="22" ry="46" fill="#a93226" transform="rotate(135 170 180)"/>
+              <ellipse cx="170" cy="138" rx="22" ry="46" fill="#a93226" transform="rotate(180 170 180)"/>
+              <ellipse cx="170" cy="138" rx="22" ry="46" fill="#a93226" transform="rotate(225 170 180)"/>
+              <ellipse cx="170" cy="138" rx="22" ry="46" fill="#a93226" transform="rotate(270 170 180)"/>
+              <ellipse cx="170" cy="138" rx="22" ry="46" fill="#a93226" transform="rotate(315 170 180)"/>
+            </g>
+
+            <!-- Mid petals -->
+            <g class="r-petal-mid">
+              <ellipse cx="170" cy="147" rx="17" ry="37" fill="#cb4335" transform="rotate(22 170 180)"/>
+              <ellipse cx="170" cy="147" rx="17" ry="37" fill="#cb4335" transform="rotate(67 170 180)"/>
+              <ellipse cx="170" cy="147" rx="17" ry="37" fill="#cb4335" transform="rotate(112 170 180)"/>
+              <ellipse cx="170" cy="147" rx="17" ry="37" fill="#cb4335" transform="rotate(157 170 180)"/>
+              <ellipse cx="170" cy="147" rx="17" ry="37" fill="#cb4335" transform="rotate(202 170 180)"/>
+              <ellipse cx="170" cy="147" rx="17" ry="37" fill="#cb4335" transform="rotate(247 170 180)"/>
+              <ellipse cx="170" cy="147" rx="17" ry="37" fill="#cb4335" transform="rotate(292 170 180)"/>
+              <ellipse cx="170" cy="147" rx="17" ry="37" fill="#cb4335" transform="rotate(337 170 180)"/>
+            </g>
+
+            <!-- Inner petals -->
+            <g class="r-petal-inner">
+              <ellipse cx="170" cy="158" rx="13" ry="26" fill="#e8786d" transform="rotate(0 170 180)"/>
+              <ellipse cx="170" cy="158" rx="13" ry="26" fill="#e8786d" transform="rotate(60 170 180)"/>
+              <ellipse cx="170" cy="158" rx="13" ry="26" fill="#e8786d" transform="rotate(120 170 180)"/>
+              <ellipse cx="170" cy="158" rx="13" ry="26" fill="#e8786d" transform="rotate(180 170 180)"/>
+              <ellipse cx="170" cy="158" rx="13" ry="26" fill="#e8786d" transform="rotate(240 170 180)"/>
+              <ellipse cx="170" cy="158" rx="13" ry="26" fill="#e8786d" transform="rotate(300 170 180)"/>
+            </g>
+
+            <!-- Core -->
+            <circle class="r-petal-core" cx="170" cy="180" r="20" fill="#f5b7b1"/>
+            <circle class="r-center" cx="170" cy="180" r="11" fill="#e91e63"/>
+            <circle class="r-center" cx="170" cy="180" r="5.5" fill="#c2185b"/>
+
+            <!-- Sparkles -->
+            <text class="r-sparkle r-s1" x="120" y="142" font-size="16" text-anchor="middle">✨</text>
+            <text class="r-sparkle r-s2" x="222" y="128" font-size="13" text-anchor="middle">✨</text>
+            <text class="r-sparkle r-s3" x="148" y="100" font-size="15" text-anchor="middle">✨</text>
+            <text class="r-sparkle r-s4" x="208" y="162" font-size="12" text-anchor="middle">✨</text>
+          </g>
+        </svg>
+      </div>
+      <!-- ===== END ANIMATED ROSE ===== -->
+
+      <div class="scroll-hint reveal-text" style="--delay: 1.3s">
+        <p class="scroll-label">Scroll to Discover</p>
+        <div class="scroll-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 5v14M5 13l7 7 7-7" stroke="#e6a8bb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+   <!-- ===== SECTION 2: CONGRATS INTRO ===== -->
+<section class="section section-letter" id="section2">
+  <div class="content-card letter-card">
+    <p class="tagline msg-anim" data-delay="0">a moment to celebrate you</p>
+    <h1 class="title msg-anim" data-delay="1">
+      Congratulations, <br />
+      <span class="highlight">My Graduate</span>
+    </h1>
+    <div class="letter-lines">
+      <p class="msg-anim" data-delay="2">
+        Hayy hayy, selamat ya sayang atas kelulusannya! <em>I'm so happy and proud banget dengernya</em> — rasanya seperti ikut merayakan sesuatu yang sudah lama sekali kita tunggu bersama. Maaf ya, <em>no fancy flowers or big gifts</em> yang bisa aku berikan. Cuma website kecil yang tidak seberapa ini — but trust me, <em>every single word here</em> aku tulis dengan sepenuh hati, only for you. Semoga kamu happy bacanya, semoga senyummu hari ini selebar-lebarnya, hehe.
+      </p>
+      <p class="msg-anim" data-delay="3">
+        Sayang, <em>you'll never know</em> betapa sering aku diam-diam kagum melihatmu. Di hari-hari yang berat, di malam yang panjang, di momen ketika kamu hampir menyerah — <em>you kept standing.</em> Kamu tetap melangkah, even when your feet were tired dan hatimu sudah penuh. <em>I witnessed everything,</em> sayang. Setiap perjuangan yang kamu anggap kecil, every tear you tried to hide, setiap doa yang kamu panjatkan diam-diam di malam yang sunyi. And today — <em>semua itu terbayar.</em>
+      </p>
+      <p class="msg-anim" data-delay="4">
+        I'm not just proud because you graduated, sayang. Aku bangga karena aku tahu betapa mahalnya harga di balik kata Perpisahan itu. So much you've been through, so hard you've fought — <em>and you did it your own way.</em> That's what makes me fall in love with you, again and again.
+      </p>
+    </div>
+    <div class="emoji-row msg-anim" data-delay="5">🎓🌸🌷</div>
+  </div>
+</section>
+
+   <!-- ===== SECTION 3: WHY I LOVE YOU ===== -->
+<section class="section section-whyilove" id="section3">
+  <p class="tagline">why i'm proud of you </p>
+  <h1 class="title">
+    You Did It, <br />
+    <span class="highlight">My Love</span>
+  </h1>
+
+  <div class="love-grid">
+    <div class="love-card">
+      <div class="love-icon">🌹</div>
+      <h3>Your Smile</h3>
+      <p>The kind of smile that makes every corner of my world feel warmer.</p>
+    </div>
+
+    <div class="love-card">
+      <div class="love-icon">🌠</div>
+      <h3>Your Soul</h3>
+      <p>Rare, genuine, and more beautiful than any star I've ever seen.</p>
+    </div>
+
+    <div class="love-card">
+      <div class="love-icon">🌸</div>
+      <h3>Your Kindness</h3>
+      <p>The way you love the world makes me want to be a better person every single day.</p>
+    </div>
+
+    <div class="love-card">
+      <div class="love-icon">💪</div>
+      <h3>Your Strength</h3>
+      <p>Every time you almost gave up but didn't — that's everything to me.</p>
+    </div>
+
+    <div class="love-card">
+      <div class="love-icon">🌷</div>
+      <h3>Your Heart</h3>
+      <p>Every version of you, every memory we made, are more than enough.</p>
+    </div>
+
+    <div class="love-card">
+      <div class="love-icon">💖</div>
+      <h3>Simply You</h3>
+      <p>I love every version of you, I admire you endlessly.</p>
+    </div>
+  </div>
+
+  <p class="signature">— Always yours 🌹</p>
+</section>
+
+    <!-- ===== SECTION 4: PICTURES ===== -->
+    <section class="section">
+      <h2 class="section-title">Pictures</h2>
+      <div class="gallery">
+        <div class="gallery-item"><img src="images/poto1.jpg" alt="" /><span class="caption">you</span></div>
+        <div class="gallery-item"><img src="images/poto2.jpg" alt="" /><span class="caption">are</span></div>
+        <div class="gallery-item"><img src="images/poto3.jpg" alt="" /><span class="caption">my</span></div>
+        <div class="gallery-item"><img src="images/poto4.jpg" alt="" /><span class="caption">pride</span></div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 5: CLOSING ===== -->
+    <section class="section closing">
+      <div class="heart">💗</div>
+      <h1 class="title">Congratulations <br /><span class="highlight">Graduate</span></h1>
+      <p class="made-with">Congratulations on your graduation, my love 🌸</p>
+    </section>
+
+    
+
+  </div><!-- end main-content -->
+
+  <script src="script.js"></script>
+</body>
+</html>
